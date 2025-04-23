@@ -1,59 +1,78 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <title>Wish For You</title>
-  <link rel="stylesheet" href="stylecss.css" />
+    <meta charset="UTF-8">
+    <title>Wish For You</title>
+    <link rel="stylesheet" href="stylecss.css">
+    <style>
+        .message-box {
+            background-color: #0a0f1e;
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 2px solid #00ff00;
+            box-shadow: 0 0 20px #00ff00;
+            width: 90%;
+            max-width: 500px;
+            text-align: left;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            position: relative;
+        }
+
+        .skip-button {
+            margin-top: 1.5rem;
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .skip-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
-<body>
-  <div class="message-box">
-    <h1 class="title">Message</h1>
-    <div id="text-display" class="message-content"></div>
-    <button id="skip-btn">SKIP</button>
-  </div>
+<body style="background-color: #16162d; display: flex; justify-content: center; align-items: center; height: 100vh; padding: 2rem;">
 
-  <script>
-    const lines = [
-      "Hi Cel,",
-      "",
-      "Happy Birthday!",
-      "",
-      "Hari ini aku pengen kamu ngerasain semua hal positif dan keajaiban yang cuma bisa didapetin",
-      "kalo kamu ada di dunia ini. Semoga segala keinginanmu tercapai, apalagi yang kocak-kocak",
-      "dan gak biasa, karena kamu tuh unik banget!",
-      "Aku selalu bersyukur bisa ngeliat kamu jadi versi terbaik dari dirimu, yang kadang-kadang lucu ban"
-    ];
+    <div class="message-box">
+        <h1 style="text-align: center;">Message</h1>
+        <div id="message"></div>
+        <button id="skipBtn" class="skip-button">SKIP</button>
+    </div>
 
-    const display = document.getElementById("text-display");
-    const skipBtn = document.getElementById("skip-btn");
+    <script>
+        const messageEl = document.getElementById('message');
+        const skipBtn = document.getElementById('skipBtn');
 
-    let currentLine = 0;
-    let isSkipped = false;
+        const message = `Hi Cel, Happy Birthday! Hari ini aku pengen kamu ngerasain semua hal positif dan keajaiban yang cuma bisa didapetin kalo kamu ada di dunia ini. 
+        Semoga segala keinginanmu tercapai, apalagi yang kocak-kocak dan gak biasa, karena kamu tuh unik banget! 
+        Aku selalu bersyukur bisa ngeliat kamu jadi versi terbaik dari dirimu, yang kadang-kadang lucu ban.`;
 
-    function showNextLine() {
-      if (currentLine < lines.length && !isSkipped) {
-        const p = document.createElement("p");
-        p.textContent = lines[currentLine];
-        display.appendChild(p);
-        currentLine++;
-        setTimeout(showNextLine, 1000); // delay antar baris
-      }
-    }
+        const sentences = message.split(/(?<=[.!?])\s+/); // Pisahkan berdasarkan kalimat
+        let index = 0;
+        let isSkipping = false;
 
-    skipBtn.addEventListener("click", () => {
-      if (!isSkipped) {
-        isSkipped = true;
-        display.innerHTML = ""; // hapus animasi sebelumnya
-        lines.forEach(line => {
-          const p = document.createElement("p");
-          p.textContent = line;
-          display.appendChild(p);
+        function showNextSentence() {
+            if (index < sentences.length && !isSkipping) {
+                messageEl.innerHTML += sentences[index] + " ";
+                index++;
+                setTimeout(showNextSentence, 1000); // jeda antar kalimat
+            }
+        }
+
+        skipBtn.addEventListener('click', () => {
+            if (!isSkipping) {
+                isSkipping = true;
+                messageEl.innerHTML = sentences.join(" ");
+            }
         });
-      }
-    });
 
-    // mulai animasi otomatis
-    showNextLine();
-  </script>
+        showNextSentence();
+    </script>
 </body>
 </html>
