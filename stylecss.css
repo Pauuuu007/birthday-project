@@ -1,0 +1,50 @@
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #0f0f1b;
+  font-family: 'Courier New', monospace;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.message-box {
+  background-color: #101820;
+  border: 3px solid #00ff00;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 0 15px #00ff00;
+}
+
+.title {
+  font-size: 28px;
+  color: #00ff00;
+  margin-bottom: 20px;
+}
+
+.message-content {
+  color: #00ffcc;
+  text-align: left;
+  min-height: 250px;
+}
+
+#skip-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #2f6fed;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 3px #1e4fc1;
+}
+
+#skip-btn:hover {
+  background-color: #488cff;
+}
