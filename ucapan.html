@@ -1,16 +1,59 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Ucapan Ulang Tahun</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Wish For You</title>
+  <link rel="stylesheet" href="stylecss.css" />
 </head>
 <body>
-    <div class="container">
-        <h1>📜 Ucapan</h1>
-        <p>Selamat ulang tahun! Semoga semua harapan dan impianmu tercapai. Terima kasih sudah jadi pribadi yang hangat, baik, dan selalu tulus. Aku bersyukur banget bisa kenal kamu 🥹💕</p>
-        <a href="index.html">⬅️ Kembali</a>
-    </div>
+  <div class="message-box">
+    <h1 class="title">Message</h1>
+    <div id="text-display" class="message-content"></div>
+    <button id="skip-btn">SKIP</button>
+  </div>
+
+  <script>
+    const lines = [
+      "Hi Cel,",
+      "",
+      "Happy Birthday!",
+      "",
+      "Hari ini aku pengen kamu ngerasain semua hal positif dan keajaiban yang cuma bisa didapetin",
+      "kalo kamu ada di dunia ini. Semoga segala keinginanmu tercapai, apalagi yang kocak-kocak",
+      "dan gak biasa, karena kamu tuh unik banget!",
+      "Aku selalu bersyukur bisa ngeliat kamu jadi versi terbaik dari dirimu, yang kadang-kadang lucu ban"
+    ];
+
+    const display = document.getElementById("text-display");
+    const skipBtn = document.getElementById("skip-btn");
+
+    let currentLine = 0;
+    let isSkipped = false;
+
+    function showNextLine() {
+      if (currentLine < lines.length && !isSkipped) {
+        const p = document.createElement("p");
+        p.textContent = lines[currentLine];
+        display.appendChild(p);
+        currentLine++;
+        setTimeout(showNextLine, 1000); // delay antar baris
+      }
+    }
+
+    skipBtn.addEventListener("click", () => {
+      if (!isSkipped) {
+        isSkipped = true;
+        display.innerHTML = ""; // hapus animasi sebelumnya
+        lines.forEach(line => {
+          const p = document.createElement("p");
+          p.textContent = line;
+          display.appendChild(p);
+        });
+      }
+    });
+
+    // mulai animasi otomatis
+    showNextLine();
+  </script>
 </body>
 </html>
