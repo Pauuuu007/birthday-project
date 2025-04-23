@@ -55,6 +55,7 @@
     <div class="message-box">
         <h1 style="text-align: center;">Message</h1>
         <div id="message"></div>
+        <button id="skipBtn" class="skip-button">SKIP</button>
     </div>
 
     <button class="back-button" onclick="window.location.href='index.html'">⬅️ Back Home</button>
@@ -63,10 +64,9 @@
         const messageEl = document.getElementById('message');
         const skipBtn = document.getElementById('skipBtn');
 
-        const message = `Hi Fin, Happy Birthday! Hari ini aku pengen kamu ngerasain semua hal positif dan keajaiban yang cuma bisa didapetin oleh kamu seorang :P . 
-        Semoga segala keinginanmu tercapai, Dan semoga project online ini juga bisa bikin kamu senyum bahagia! 
-        Aku selalu bersyukur bisa ngeliat kamu dan kenal kamu, apalagi ketika kamu senyum dan tertawa kaya di foto yang ada d sini gemes bangettt, kayak aku kedapetan jackpot bisa liat itu.
-        Semoga kamu suka yaaa sekali lagi, dannnn kedepannya semakin banyak hal-hal baik yang dapat kamu jumpai dan pelajari.`;
+        const message = `Hi Cel, Happy Birthday! Hari ini aku pengen kamu ngerasain semua hal positif dan keajaiban yang cuma bisa didapetin kalo kamu ada di dunia ini. 
+        Semoga segala keinginanmu tercapai, apalagi yang kocak-kocak dan gak biasa, karena kamu tuh unik banget! 
+        Aku selalu bersyukur bisa ngeliat kamu jadi versi terbaik dari dirimu, yang kadang-kadang lucu ban.`;
 
         const sentences = message.split(/(?<=[.!?])\s+/); // Pisahkan berdasarkan kalimat
         let index = 0;
