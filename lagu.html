@@ -1,0 +1,32 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Lagu untuk Kamu</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        function playSong(filename) {
+            const player = document.getElementById("audioPlayer");
+            player.src = "assets/" + filename;
+            player.play();
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 Playlist Buat Kamu</h1>
+        <select onchange="playSong(this.value)">
+            <option disabled selected>Pilih lagu</option>
+            <option value="lagu1.mp3">Lagu 1 - Judul A</option>
+            <option value="lagu2.mp3">Lagu 2 - Judul B</option>
+            <option value="lagu3.mp3">Lagu 3 - Judul C</option>
+            <option value="lagu4.mp3">Lagu 4 - Judul D</option>
+            <option value="lagu5.mp3">Lagu 5 - Judul E</option>
+        </select>
+        <br><br>
+        <audio id="audioPlayer" controls></audio>
+        <a href="index.html">⬅️ Kembali</a>
+    </div>
+</body>
+</html>
