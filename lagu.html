@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Playlist buat kamu</title>
-    <link rel="stylesheet" href="style.css">
     <style>
         body {
             background-color: #001f1f;
@@ -28,6 +27,7 @@
             font-size: 1.2rem;
             color: #ffc107;
             margin-bottom: 0.5rem;
+            font-weight: bold;
         }
 
         .playlist {
@@ -43,53 +43,126 @@
             cursor: pointer;
         }
 
-        .song-item:hover {
+        .song-item:hover,
+        .song-item.active {
             background-color: #333;
+            color: #00ffcc;
         }
 
         .controls {
-            margin: 1rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .controls button {
+            background-color: #1976d2;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .controls button:hover {
+            background-color: #1565c0;
         }
 
         audio {
-            width: 100%;
+            width: 300px;
             margin-top: 1rem;
         }
     </style>
-    <script>
-        function playSong(filename) {
-            const player = document.getElementById("audioPlayer");
-            player.src = "assets/" + filename;
-            player.play();
-        }
-    </script>
 </head>
 <body>
 
     <h1>🎵 Playlist Buat Kamu</h1>
 
+    <div class="controls">
+        <button onclick="prevSong()">⏮️</button>
+        <button onclick="togglePlay()">▶️ / ⏸️</button>
+        <button onclick="nextSong()">⏭️</button>
+    </div>
+
     <div class="playlist-container">
         <div class="playlist-title">PLAYLIST:</div>
-        <div class="playlist">
-            <div class="song-item" onclick="playSong('lagu1.mp3')">
+        <div class="playlist" id="playlist">
+            <div class="song-item" onclick="selectSong(0)">
                 <span>1. I'll Stay</span><span>05:28</span>
             </div>
-            <div class="song-item" onclick="playSong('lagu2.mp3')">
+            <div class="song-item" onclick="selectSong(1)">
                 <span>2. Adore You</span><span>06:32</span>
             </div>
-            <div class="song-item" onclick="playSong('lagu3.mp3')">
+            <div class="song-item" onclick="selectSong(2)">
                 <span>3. If I Ever</span><span>07:18</span>
             </div>
-            <div class="song-item" onclick="playSong('lagu4.mp3')">
+            <div class="song-item" onclick="selectSong(3)">
                 <span>4. Life With U</span><span>03:52</span>
             </div>
-            <div class="song-item" onclick="playSong('lagu5.mp3')">
+            <div class="song-item" onclick="selectSong(4)">
                 <span>5. Wish U</span><span>03:58</span>
             </div>
         </div>
     </div>
 
     <audio id="audioPlayer" controls></audio>
+
+    <script>
+        const songs = [
+            "lagu1.mp3",
+            "lagu2.mp3",
+            "lagu3.mp3",
+            "lagu4.mp3",
+            "lagu5.mp3"
+        ];
+
+        let currentSongIndex = -1;
+        const player = document.getElementById("audioPlayer");
+        const items = document.querySelectorAll(".song-item");
+
+        function selectSong(index) {
+            currentSongIndex = index;
+            playSong(songs[index]);
+            highlightSong(index);
+        }
+
+        function playSong(filename) {
+            player.src = "assets/" + filename;
+            player.play();
+        }
+
+        function nextSong() {
+            if (currentSongIndex < songs.length - 1) {
+                selectSong(currentSongIndex + 1);
+            } else {
+                selectSong(0); // balik ke awal
+            }
+        }
+
+        function prevSong() {
+            if (currentSongIndex > 0) {
+                selectSong(currentSongIndex - 1);
+            } else {
+                selectSong(songs.length - 1); // ke lagu terakhir
+            }
+        }
+
+        function togglePlay() {
+            if (player.paused) {
+                player.play();
+            } else {
+                player.pause();
+            }
+        }
+
+        function highlightSong(index) {
+            items.forEach((item, i) => {
+                item.classList.toggle("active", i === index);
+            });
+        }
+    </script>
 
 </body>
 </html>
