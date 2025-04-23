@@ -5,6 +5,17 @@
     <title>Wish For You</title>
     <link rel="stylesheet" href="stylecss.css">
     <style>
+        body {
+            background-color: #16162d;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+            font-family: 'Courier New', monospace;
+        }
+
         .message-box {
             background-color: #0a0f1e;
             padding: 2rem;
@@ -14,12 +25,12 @@
             width: 90%;
             max-width: 500px;
             text-align: left;
-            font-family: 'Courier New', monospace;
             color: #00ff00;
-            position: relative;
+            margin-bottom: 1.5rem;
         }
 
-        .skip-button {
+        .skip-button,
+        .back-button {
             margin-top: 1.5rem;
             display: inline-block;
             background-color: #007bff;
@@ -32,12 +43,14 @@
             cursor: pointer;
         }
 
-        .skip-button:hover {
+        .skip-button:hover,
+        .back-button:hover {
             background-color: #0056b3;
         }
+
     </style>
 </head>
-<body style="background-color: #16162d; display: flex; justify-content: center; align-items: center; height: 100vh; padding: 2rem;">
+<body>
 
     <div class="message-box">
         <h1 style="text-align: center;">Message</h1>
@@ -45,13 +58,16 @@
         <button id="skipBtn" class="skip-button">SKIP</button>
     </div>
 
+    <button class="back-button" onclick="window.location.href='index.html'">⬅️ Back Home</button>
+
     <script>
         const messageEl = document.getElementById('message');
         const skipBtn = document.getElementById('skipBtn');
 
-        const message = `Hi Cel, Happy Birthday! Hari ini aku pengen kamu ngerasain semua hal positif dan keajaiban yang cuma bisa didapetin kalo kamu ada di dunia ini. 
-        Semoga segala keinginanmu tercapai, apalagi yang kocak-kocak dan gak biasa, karena kamu tuh unik banget! 
-        Aku selalu bersyukur bisa ngeliat kamu jadi versi terbaik dari dirimu, yang kadang-kadang lucu ban.`;
+        const message = `Hi Fin, Happy Birthday! Hari ini aku pengen kamu ngerasain semua hal positif dan keajaiban yang cuma bisa didapetin oleh kamu seorang :P . 
+        Semoga segala keinginanmu tercapai, Dan semoga project online ini juga bisa bikin kamu senyum bahagia! 
+        Aku selalu bersyukur bisa ngeliat kamu dan kenal kamu, apalagi ketika kamu senyum dan tertawa kaya di foto yang ada d sini gemes bangettt, kayak aku kedapetan jackpot bisa liat itu.
+        Semoga kamu suka yaaa sekali lagi, dannnn kedepannya semakin banyak hal-hal baik yang dapat kamu jumpai dan pelajari.`;
 
         const sentences = message.split(/(?<=[.!?])\s+/); // Pisahkan berdasarkan kalimat
         let index = 0;
@@ -75,6 +91,4 @@
         showNextSentence();
     </script>
 </body>
-<button onclick="window.location.href='index.html'" style="margin-top: 1rem; padding: 0.5rem 1rem; background-color: #1565c0; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">
-    ⬅️ Back Home
 </html>
