@@ -1,10 +1,61 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>Lagu untuk Kamu</title>
+    <title>Playlist buat kamu</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #001f1f;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .playlist-container {
+            width: 300px;
+            background: #1a1a2e;
+            border: 2px solid #ffc107;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+
+        .playlist-title {
+            font-size: 1.2rem;
+            color: #ffc107;
+            margin-bottom: 0.5rem;
+        }
+
+        .playlist {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .song-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem;
+            border-bottom: 1px solid #444;
+            cursor: pointer;
+        }
+
+        .song-item:hover {
+            background-color: #333;
+        }
+
+        .controls {
+            margin: 1rem 0;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 1rem;
+        }
+    </style>
     <script>
         function playSong(filename) {
             const player = document.getElementById("audioPlayer");
@@ -14,19 +65,31 @@
     </script>
 </head>
 <body>
-    <div class="container">
-        <h1>🎵 Playlist Buat Kamu</h1>
-        <select onchange="playSong(this.value)">
-            <option disabled selected>Pilih lagu</option>
-            <option value="lagu1.mp3">Lagu 1 - Judul A</option>
-            <option value="lagu2.mp3">Lagu 2 - Judul B</option>
-            <option value="lagu3.mp3">Lagu 3 - Judul C</option>
-            <option value="lagu4.mp3">Lagu 4 - Judul D</option>
-            <option value="lagu5.mp3">Lagu 5 - Judul E</option>
-        </select>
-        <br><br>
-        <audio id="audioPlayer" controls></audio>
-        <a href="index.html">⬅️ Kembali</a>
+
+    <h1>🎵 Playlist Buat Kamu</h1>
+
+    <div class="playlist-container">
+        <div class="playlist-title">PLAYLIST:</div>
+        <div class="playlist">
+            <div class="song-item" onclick="playSong('lagu1.mp3')">
+                <span>1. I'll Stay</span><span>05:28</span>
+            </div>
+            <div class="song-item" onclick="playSong('lagu2.mp3')">
+                <span>2. Adore You</span><span>06:32</span>
+            </div>
+            <div class="song-item" onclick="playSong('lagu3.mp3')">
+                <span>3. If I Ever</span><span>07:18</span>
+            </div>
+            <div class="song-item" onclick="playSong('lagu4.mp3')">
+                <span>4. Life With U</span><span>03:52</span>
+            </div>
+            <div class="song-item" onclick="playSong('lagu5.mp3')">
+                <span>5. Wish U</span><span>03:58</span>
+            </div>
+        </div>
     </div>
+
+    <audio id="audioPlayer" controls></audio>
+
 </body>
 </html>
