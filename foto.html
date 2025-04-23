@@ -1,20 +1,101 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <title>Foto Kamu</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #001f1f;
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 300px;
+            height: 400px;
+            overflow: hidden;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+        }
+
+        .slider-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .slider-container img.active {
+            display: block;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .nav-buttons button {
+            background-color: #ffc107;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        a {
+            color: #ffc107;
+            text-decoration: none;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>📸 Foto Spesial</h1>
-        <div class="photo-gallery">
-            <img src="assets/foto1.jpg" alt="Foto 1" class="photo">
-            <img src="assets/foto2.jpg" alt="Foto 2" class="photo">
-            <img src="assets/foto3.jpg" alt="Foto 3" class="photo">
-        </div>
-        <a href="index.html">⬅️ Kembali</a>
+    <h1>📸 Foto Spesial</h1>
+
+    <div class="slider-container">
+        <img src="assets/foto1.jpg" alt="Foto 1" class="photo active">
+        <img src="assets/foto2.jpg" alt="Foto 2" class="photo">
+        <img src="assets/foto3.jpg" alt="Foto 3" class="photo">
     </div>
+
+    <div class="nav-buttons">
+        <button onclick="prevPhoto()">⬅ Sebelumnya</button>
+        <button onclick="nextPhoto()">Berikutnya ➡</button>
+    </div>
+
+    <a href="index.html">⬅️ Back Home</a>
+
+    <script>
+        const photos = document.querySelectorAll('.photo');
+        let current = 0;
+
+        function showPhoto(index) {
+            photos.forEach((photo, i) => {
+                photo.classList.toggle('active', i === index);
+            });
+        }
+
+        function nextPhoto() {
+            current = (current + 1) % photos.length;
+            showPhoto(current);
+        }
+
+        function prevPhoto() {
+            current = (current - 1 + photos.length) % photos.length;
+            showPhoto(current);
+        }
+    </script>
 </body>
 </html>
