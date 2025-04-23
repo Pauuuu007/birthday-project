@@ -68,7 +68,7 @@
         Semoga segala keinginanmu tercapai, apalagi yang kocak-kocak dan gak biasa, karena kamu tuh unik banget! 
         Aku selalu bersyukur bisa ngeliat kamu jadi versi terbaik dari dirimu, yang kadang-kadang lucu ban.`;
 
-        const sentences = message.split(/(?<=[.!?])\s+/); // Pisahkan berdasarkan kalimat
+        const sentences = message.split(/(?<=[.!?])\s+/);
         let index = 0;
         let isSkipping = false;
 
@@ -76,7 +76,7 @@
             if (index < sentences.length && !isSkipping) {
                 messageEl.innerHTML += sentences[index] + " ";
                 index++;
-                setTimeout(showNextSentence, 100000); // jeda antar kalimat
+                setTimeout(showNextSentence, 1800); // jeda diperpanjang jadi 1.8 detik
             }
         }
 
